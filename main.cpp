@@ -20,8 +20,8 @@ int main() {
     //get random prime number based off of desired key size
     primeNum = generateLargePrime(key_size);
 
-    uint1024_t test;
-    test = square_and_multiply(9, 4, 23);
+    bool test;
+    test = millerRabinPrimalityTest(29, 10);
     cout<<"\ntest: "<<test;
 
 

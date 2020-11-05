@@ -28,7 +28,6 @@ uint1024_t generateLargePrime(int key_size){
     range = upperBound - lowerBound;
 
 
-
     //to find a value with the desired number of bits, we find a number n between 2^(b-1) ≤ n ≤ 2^b
 
 

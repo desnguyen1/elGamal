@@ -1,5 +1,6 @@
 #include <iostream>
 #include <boost/multiprecision/cpp_int.hpp>
+#include <math.h>
 
 using std::cin;
 using std::cout;
@@ -65,5 +66,47 @@ uint1024_t square_and_multiply(uint1024_t a, uint1024_t k, uint1024_t n){
 
 //returns true if number is prime
 bool millerRabinPrimalityTest(uint1024_t randomNum, int t){
-    
+    uint1024_t num, r = 1;
+    uint1024_t a, y;
+    int s=0;
+
+    //step 1: finding 'r' and 's'
+    //write n-1 = 2^s * r
+    num = randomNum - 1;
+    while(num != 1){
+        if(num % 2 == 0){
+            num /= 2;
+            s++;
+        }
+        else{
+            r *= num;
+            num /= num;
+        }
+    }
+
+    //step 2: primality test
+    for(int i = 0; i<t; i++){
+        //choose a random 'a' given 2 ≤ a ≤ n-2
+        //this doesnt include n-3 number in random int, e.g., if n = 27, we will get a random a from [2,25]
+        a = 2+rand() % randomNum-3;
+
+        //compute y = a^r mod n
+        y = square_and_multiply(a, r, randomNum);
+
+    if(y != 1 && y != randomNum-1){
+        int j = 1;
+        while( j<= s-1 && y != randomNum-1){
+            y = square_and_multiply(y, 2, randomNum);
+            if(y==1) {
+                return false; //randomNum is composite
+            }
+            j++;
+        }
+        if(y != randomNum-1)
+            return false;//composite
+    }
+
+    }
+    //cout<<"\n"<<(uint1024_t)pow(2,s) * r <<" = 2^"<<s<<" * "<<r;
+    return true;
 }
