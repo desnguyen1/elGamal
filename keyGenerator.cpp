@@ -2,6 +2,8 @@
 #include <boost/multiprecision/cpp_int.hpp>
 #include <math.h>
 
+#include "algorithms.h"
+
 using std::cin;
 using std::cout;
 using std::endl;
@@ -27,6 +29,13 @@ uint1024_t generateLargePrime(int key_size){
     upperBound = (uint1024_t)pow(2, key_size);
     range = upperBound - lowerBound;
 
+    //check if random number is prime
+    while(!isPrime){
+        //generate random number
+        largePrime = rand() % lowerBound + range;
+
+        isPrime =
+    }
 
 
     //to find a value with the desired number of bits, we find a number n between 2^(b-1) ≤ n ≤ 2^b
