@@ -20,11 +20,9 @@ int main() {
     //get random prime number based off of desired key size
     primeNum = generateLargePrime(key_size);
 
-    bool test;
-    test = millerRabinPrimalityTest(29, 10);
-    cout<<"\ntest: "<<test;
 
 
     return 0;
 }
 //TODO: if errors, check the string return type in decToBinary
+//TODO: find a proper 't'
