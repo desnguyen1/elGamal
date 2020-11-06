@@ -69,4 +69,8 @@ void generateKeys(uint1024_t& p, uint1024_t& alpha, uint1024_t& x, uint1024_t& p
     //computing x using modular exponentiation
     x = square_and_multiply(alpha, a, p);
 
+    //private key
+    //cout<<"\na: "<<a;
+    privateKey = a;
+
 }
