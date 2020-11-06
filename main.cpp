@@ -11,18 +11,16 @@ using std::string;
 using boost::multiprecision::uint1024_t;
 
 int main() {
-    int key_size;
-    uint1024_t primeNum;
+    uint1024_t primeNum, alpha, x, privateKey;
 
-    //get key size from user
-    key_size = getKeySize();
+    //get public key (p, alpha, x) and private key (a)
+    generateKeys(primeNum, alpha, x, privateKey);
+    cout<<"\nGenerating public and private key based off of desired key size in bits.....";
 
-    //get random prime number based off of desired key size
-    primeNum = generateLargePrime(key_size);
+    //obtain A's public key
+    cout<<"\nGetting the public key.....";
+    //get message to decrypt from user
 
-    uint1024_t test;
-    test = square_and_multiply(9, 4, 23);
-    cout<<"\ntest: "<<test;
 
 
     return 0;
