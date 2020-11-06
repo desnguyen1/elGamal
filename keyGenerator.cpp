@@ -29,15 +29,7 @@ uint1024_t generatePrime(int key_size){
     upperBound = (uint1024_t)pow(2, key_size);
     range = upperBound - lowerBound;
 
-<<<<<<< HEAD
-    //check if random number is prime
-    while(!isPrime){
-        //generate random number
-        largePrime = rand() % lowerBound + range;
 
-        isPrime =
-    }
-=======
     while(!isPrime){
         prime = rand() % lowerBound + range;
         //to find a value with the desired number of bits, we find a number n between 2^(b-1) ≤ n ≤ 2^b
@@ -59,7 +51,7 @@ uint1024_t generateAlpha(uint1024_t prime){
     //cout<<"\nalpha: "<<alpha;
     return alpha;
 }
->>>>>>> generateKeys
+
 
 void generateKeys(uint1024_t& p, uint1024_t& alpha, uint1024_t& x, uint1024_t& privateKey){
     int key_size;
