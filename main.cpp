@@ -14,7 +14,7 @@ using boost::multiprecision::uint1024_t;
 int main() {
     uint1024_t primeNum, alpha, x, privateKey;
     uint1024_t gamma, delta;
-    uint1024_t m;
+    uint1024_t m, decrypted_m;
 
     //get public key (p, alpha, x) and private key (a)
     generateKeys(primeNum, alpha, x, privateKey);
@@ -33,7 +33,9 @@ int main() {
     encryption(m, primeNum, x, alpha, gamma, delta);
 
     //starting decryption
+    decrypted_m = decryption(privateKey, primeNum, gamma, delta);
 
+    cout<<"\ndecrypted m: "<<decrypted_m;
 
 
 
@@ -43,3 +45,4 @@ int main() {
 //TODO: if errors, check the string return type in decToBinary
 //TODO: fix message part, this was done to test functionality
 //TODO: implement srand() instead of rand()
+//TODO: fix encryption/decryption

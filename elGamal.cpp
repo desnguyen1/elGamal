@@ -23,6 +23,13 @@ void encryption(uint1024_t m, uint1024_t p, uint1024_t x, uint1024_t alpha,uint1
     delta *= m;
 }
 
-void decryption(){
+//a = private key
+uint1024_t decryption(uint1024_t a, uint1024_t p, uint1024_t gamma, uint1024_t delta){
+    uint1024_t gammaResult, recover_m;
+    //compute gamma^(p-1-a) mod p
+    gammaResult = square_and_multiply(gamma, p-1-a, p);
 
+    //recover 'm'
+    recover_m = square_and_multiply(gammaResult * delta, 1, p);
+    return recover_m;
 }
