@@ -3,6 +3,7 @@
 
 #include "keyGenerator.h"
 #include "algorithms.h"
+#include "elGamal.h"
 
 using std::cin;
 using std::cout;
@@ -12,6 +13,8 @@ using boost::multiprecision::uint1024_t;
 
 int main() {
     uint1024_t primeNum, alpha, x, privateKey;
+    uint1024_t gamma, delta;
+    uint1024_t m;
 
     //get public key (p, alpha, x) and private key (a)
     generateKeys(primeNum, alpha, x, privateKey);
@@ -19,10 +22,24 @@ int main() {
 
     //obtain A's public key
     cout<<"\nGetting the public key.....";
+    cout<<"\nPublic Key published: ("<<primeNum<<", "<<alpha<<", "<<x<<")";
+
     //get message to decrypt from user
+    cout<<"\nMessage in integer form: ";
+    cin>>m;
+
+    //starting encryption
+    //will output ciphertext of c = (gamma, delta)
+    encryption(m, primeNum, x, alpha, gamma, delta);
+
+    //starting decryption
+
+
 
 
 
     return 0;
 }
 //TODO: if errors, check the string return type in decToBinary
+//TODO: fix message part, this was done to test functionality
+//TODO: implement srand() instead of rand()
