@@ -19,17 +19,16 @@ void encryption(uint1024_t m, uint1024_t p, uint1024_t x, uint1024_t alpha,uint1
     gamma = square_and_multiply(alpha, k, p);
 
     //compute delta = m * x^k (mod p), given x = alpha^a
-    delta = square_and_multiply(x, k, p);
-    delta *= m;
+    delta = m * square_and_multiply(x, k, p);
 }
 
 //a = private key
 uint1024_t decryption(uint1024_t a, uint1024_t p, uint1024_t gamma, uint1024_t delta){
     uint1024_t gammaResult, recover_m;
     //compute gamma^(p-1-a) mod p
-    gammaResult = square_and_multiply(gamma, p-1-a, p);
+    gammaResult = square_and_multiply(gamma, (p-1-a), p);
 
     //recover 'm'
-    recover_m = square_and_multiply(gammaResult * delta, 1, p);
+    recover_m = (gammaResult * delta) % p;
     return recover_m;
 }

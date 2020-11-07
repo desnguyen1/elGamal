@@ -38,8 +38,6 @@ int main() {
     cout<<"\ndecrypted m: "<<decrypted_m;
 
 
-
-
     return 0;
 }
 //TODO: if errors, check the string return type in decToBinary
