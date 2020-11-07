@@ -40,7 +40,6 @@ int main() {
 
     return 0;
 }
-//TODO: if errors, check the string return type in decToBinary
 //TODO: fix message part, this was done to test functionality
 //TODO: implement srand() instead of rand()
-//TODO: fix encryption/decryption
+//TODO: fix 512 bits
