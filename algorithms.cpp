@@ -8,6 +8,44 @@ using std::endl;
 using std::string;
 using boost::multiprecision::uint1024_t;
 
+//string -> int
+//turns the letter into a number where A = 10, B = 11, a = 42, b = 43
+string stringToInt(string message) {
+    string output = "";
+    int num;
+    for (int i = 0; i < message.length(); i++) {
+        //set space to 99
+        if(message[i] == ' '){
+            num = 99;
+            //cout<<"\nspace";
+        }
+        else {
+            //otherwise A = 65
+            num = (int) message[i] - 55;
+        }
+        output += std::to_string(num);
+        //cout<<"\nnum: "<<num;
+        //cout<<"\nout: "<<output;
+    }
+
+    return output;
+}
+
+string intToString(uint1024_t decryptedMessage){
+    string output="";
+    char letter;
+    int num;
+    while(decryptedMessage > 0){
+        num = ((int)decryptedMessage % 100) + 55;
+        decryptedMessage /= 100;
+        cout<<"\nnum: "<<num;
+        letter = char(num);
+        cout<<"\nletter: "<<letter;
+        output += std::to_string(char(letter));
+    }
+    return output;
+}
+
 //decimal -> binary
 string decToBinary(uint1024_t n){
     uint1024_t r;
