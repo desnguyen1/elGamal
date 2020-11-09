@@ -34,15 +34,27 @@ string stringToInt(string message) {
 string intToString(uint1024_t decryptedMessage){
     string output="";
     char letter;
-    int num;
+    uint1024_t num;
     while(decryptedMessage > 0){
-        num = ((int)decryptedMessage % 100) + 55;
+        //get last two digits;
+        cout<<"\ntesting calculation: "<<decryptedMessage %100;
+
+        num = decryptedMessage % 100;
         decryptedMessage /= 100;
         cout<<"\nnum: "<<num;
-        letter = char(num);
-        cout<<"\nletter: "<<letter;
-        output += std::to_string(char(letter));
+        if(num == 99){
+            cout<<"\nspace";
+            letter = ' ';
+        }
+        else {
+            num += 55;
+            letter = char(num);
+            cout << "\nletter: " << letter;
+        }
+        output += letter;
+        cout<<"\noutput: "<<output;
     }
+    reverse(output.begin(), output.end());
     return output;
 }
 

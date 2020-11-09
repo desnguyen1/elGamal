@@ -24,7 +24,7 @@ int main() {
 
     //turning message into a number (A = 10, B = 11, a = 42)
     message = stringToInt(message);
-    cout<<"\nMessage in integer form (str): "<<message;
+    cout<<"\nMessage in string form: "<<message;
 
     //turning string into int for computation
     //TODO: check that number is within range of p-1 or we have to do blocks of m
@@ -53,8 +53,6 @@ int main() {
     //convert back to letters
     decrypted_message = intToString(decrypted_m);
     cout<<"\ndecrypted message: "<<decrypted_message;
-    //TODO: fix this
-
 
 
     return 0;
