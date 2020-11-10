@@ -41,6 +41,7 @@ int main() {
     cout<<"\nGetting the public key.....";
     cout<<"\nPublic Key published: ("<<primeNum<<", "<<alpha<<", "<<x<<")";
 
+
     //checking size of message
     if(m>primeNum-1){
         cout<<"\nbigger than prime number";
