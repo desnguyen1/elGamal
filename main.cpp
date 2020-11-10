@@ -28,10 +28,10 @@ int main() {
 
     //turning string into int for computation
     //TODO: check that number is within range of p-1 or we have to do blocks of m
+    //TODO: fix, ss is not taking in huge numbers ?? not sure
     std::stringstream ss;
     ss<<message;
     ss>>m;
-
 
     //get public key (p, alpha, x) and private key (a)
     generateKeys(primeNum, alpha, x, privateKey);
@@ -40,6 +40,12 @@ int main() {
     //obtain A's public key
     cout<<"\nGetting the public key.....";
     cout<<"\nPublic Key published: ("<<primeNum<<", "<<alpha<<", "<<x<<")";
+
+    //checking size of message
+    if(m>primeNum-1){
+        cout<<"\nbigger than prime number";
+        return 0;
+    }
 
     //starting encryption
     //will output ciphertext of c = (gamma, delta)
@@ -59,3 +65,4 @@ int main() {
 }
 //TODO: implement srand() instead of rand()
 //TODO: fix 512 bits or take it out
+//TODO: print ciphertext

@@ -37,22 +37,19 @@ string intToString(uint1024_t decryptedMessage){
     uint1024_t num;
     while(decryptedMessage > 0){
         //get last two digits;
-        cout<<"\ntesting calculation: "<<decryptedMessage %100;
-
         num = decryptedMessage % 100;
         decryptedMessage /= 100;
-        cout<<"\nnum: "<<num;
+        //cout<<"\nnum: "<<num;
         if(num == 99){
-            cout<<"\nspace";
+            //cout<<"\nspace";
             letter = ' ';
         }
         else {
             num += 55;
             letter = char(num);
-            cout << "\nletter: " << letter;
+            //cout << "\nletter: " << letter;
         }
         output += letter;
-        cout<<"\noutput: "<<output;
     }
     reverse(output.begin(), output.end());
     return output;
