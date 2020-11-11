@@ -55,18 +55,17 @@ int main() {
     cout<<"\nGetting the public key.....";
     cout<<"\nPublic Key published: ("<<primeNum<<", "<<alpha<<", "<<x<<")";
 
-<<<<<<< HEAD
-
     //checking size of message
     if(m>primeNum-1){
         cout<<"\nbigger than prime number";
         return 0;
     }
-=======
+
     while(messageBlock>0){
         //otherwise nextBlock will continue to add on previously decrypted letters
         nextBlock = 0;
-        //need to separate into blocks because if m >primeNum-1
+
+        //need to separate into blocks if m >primeNum-1
         if(m>primeNum-1)
             messageBlock++;
 
@@ -78,7 +77,6 @@ int main() {
             cout<<"\nm: "<<m;
             cout<<"\nnextBlock: "<<nextBlock;
         }
->>>>>>> messages
 
         //starting encryption
         //will output ciphertext of c = (gamma, delta)
