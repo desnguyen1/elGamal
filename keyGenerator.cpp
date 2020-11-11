@@ -13,10 +13,10 @@ using boost::multiprecision::uint1024_t;
 int getKeySize(){
     int size;
     do{
-        cout<<"\nKey size (bit size) options: 64, 128, 256, and 512";
+        cout<<"\nKey size (bit size) options: 64, 128, and 256";
         cout<<"\nEnter the desired key size: ";
         cin>>size;
-    }while(size != 64 && size != 128 && size != 256 && size != 512);
+    }while(size != 64 && size != 128 && size != 256);
     return size;
 }
 
