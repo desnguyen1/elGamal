@@ -44,66 +44,70 @@ int main() {
     //turning message into a number (A = 10, B = 11, a = 42)
     message = stringToInt(message);
 
+
+    //get public key (p, alpha, x) and private key (a)
+    generateKeys(primeNum, alpha, x, privateKey);
+    cout << "\nGenerating public and private key based off of desired key size in bits....." << endl;
+
+    //obtain A's public key
+    cout << "\nGetting the public key.....";
+    cout << "\nPublic Key published: (" << primeNum << ", " << alpha << ", " << x << ")" << endl;
+
     //turning string into int for computation
     //TODO: Here is the error that the bottom todo is talking about
     //need to split up message to fit in a 1024 bit variable
     //1024 bits have 309 digits
-    cout<<"\nsize of message: "<<message.length();
-    if(message.length() >= 309){
-        message_substr = message.substr(0,308);
-        message = message.erase(0,308);
-        messageCount++;
-    }
-    else{
-        message_substr = message;
-    }
-    std::stringstream ss;
-    ss<<message_substr;
-    ss>>m;
-
-
-    //get public key (p, alpha, x) and private key (a)
-    generateKeys(primeNum, alpha, x, privateKey);
-    cout<<"\nGenerating public and private key based off of desired key size in bits....."<<endl;
-
-    //obtain A's public key
-    cout<<"\nGetting the public key.....";
-    cout<<"\nPublic Key published: ("<<primeNum<<", "<<alpha<<", "<<x<<")"<<endl;
-
-    while(messageBlock>0){
-        //otherwise nextBlock will continue to add on previously decrypted letters
-        nextBlock = 0;
-        //need to separate into blocks because if m >primeNum-1
-        if(m>primeNum-1)
-            messageBlock++;
-
-        //creating blocks of m if needed
-        while(m>primeNum-1){
-            leftover = m % 100;
-            nextBlock = concatTwoNums(leftover, nextBlock);
-            m/=100;
-            //cout<<"\nm: "<<m;
-            //cout<<"\nnextBlock: "<<nextBlock;
+    while(messageCount > 0) {
+        messageBlock =1;
+        if (message.length() >= 309) {
+            message_substr = message.substr(0, 308);
+            cout<<"\nsize of message: "<<message.length();
+            message = message.erase(0, 308);
+            messageCount++;
+            cout<<"\nmessage count: "<<messageCount;
+        } else {
+            message_substr = message;
         }
+        std::stringstream ss;
+        ss << message_substr;
+        ss >> m;
 
-        //starting encryption
-        //will output ciphertext of c = (gamma, delta)
-        encryption(m, primeNum, x, alpha, gamma, delta);
 
-        cout<<"\nCiphertext: ("<<gamma<<", "<<delta<<")";
+        while (messageBlock > 0) {
+            //otherwise nextBlock will continue to add on previously decrypted letters
+            nextBlock = 0;
+            //need to separate into blocks because if m >primeNum-1
+            if (m > primeNum - 1)
+                messageBlock++;
 
-        //starting decryption
-        decryptedBlock = decryption(privateKey, primeNum, gamma, delta);
-        str_decryptedBlock = intToString(decryptedBlock);
-        decrypted_message += str_decryptedBlock;
+            //creating blocks of m if needed
+            while (m > primeNum - 1) {
+                leftover = m % 100;
+                nextBlock = concatTwoNums(leftover, nextBlock);
+                m /= 100;
+                //cout<<"\nm: "<<m;
+                //cout<<"\nnextBlock: "<<nextBlock;
+            }
 
-        //cout << "\ndecrypted block: " << decryptedBlock;
+            //starting encryption
+            //will output ciphertext of c = (gamma, delta)
+            encryption(m, primeNum, x, alpha, gamma, delta);
 
-        m = nextBlock;
-        messageBlock--;
+            cout << "\nCiphertext for each block of m: (" << gamma << ", " << delta << ")";
 
+            //starting decryption
+            decryptedBlock = decryption(privateKey, primeNum, gamma, delta);
+            str_decryptedBlock = intToString(decryptedBlock);
+            decrypted_message += str_decryptedBlock;
+
+            //cout << "\ndecrypted block: " << decryptedBlock;
+
+            m = nextBlock;
+            messageBlock--;
+
+        }
+        messageCount--;
     }
-    messageCount--;
     //convert back to letters
     cout << "\ndecrypted message: " << decrypted_message;
 
