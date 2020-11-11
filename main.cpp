@@ -38,6 +38,7 @@ int main() {
     cout<<"\n|============Welcome to the ElGamal Encryption Scheme Simulator============|";
 
     //get message to decrypt from user
+    cout<<"\nNote: this program does not take in any other character outside of the alphabet, otherwise it will cause errors";
     cout<<"\nEnter message to decrypt: ";
     getline(cin, message);
 
@@ -116,4 +117,3 @@ int main() {
 
     return 0;
 }
-//TODO: error when printing a long message because it can be greater than 1024 bits

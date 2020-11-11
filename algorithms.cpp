@@ -8,7 +8,7 @@ using std::endl;
 using std::string;
 using boost::multiprecision::uint1024_t;
 
-//string -> int
+//letter -> int
 //turns the letter into a number where A = 10, B = 11, a = 42, b = 43
 string letterToInt(string message) {
     string output = "";
