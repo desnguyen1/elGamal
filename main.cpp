@@ -32,8 +32,8 @@ int main() {
     uint1024_t primeNum, alpha, x, privateKey;
     uint1024_t gamma, delta;
     uint1024_t m, message_int, decryptedBlock, leftover, nextBlock;
-    string message, decrypted_message="", str_decryptedBlock;
-    int messageBlock=1;
+    string message, message_substr, decrypted_message="", str_decryptedBlock;
+    int messageBlock=1, messageCount = 1;
 
     cout<<"\n|============Welcome to the ElGamal Encryption Scheme Simulator============|";
 
@@ -46,9 +46,21 @@ int main() {
 
     //turning string into int for computation
     //TODO: Here is the error that the bottom todo is talking about
+    //need to split up message to fit in a 1024 bit variable
+    //1024 bits have 309 digits
+    cout<<"\nsize of message: "<<message.length();
+    if(message.length() >= 309){
+        message_substr = message.substr(0,308);
+        message = message.erase(0,308);
+        messageCount++;
+    }
+    else{
+        message_substr = message;
+    }
     std::stringstream ss;
-    ss<<message;
+    ss<<message_substr;
     ss>>m;
+
 
     //get public key (p, alpha, x) and private key (a)
     generateKeys(primeNum, alpha, x, privateKey);
@@ -91,6 +103,7 @@ int main() {
         messageBlock--;
 
     }
+    messageCount--;
     //convert back to letters
     cout << "\ndecrypted message: " << decrypted_message;
 
