@@ -35,6 +35,8 @@ int main() {
     string message, decrypted_message="", str_decryptedBlock;
     int messageBlock=1;
 
+    cout<<"\n|============Welcome to the ElGamal Encryption Scheme Simulator============|";
+
     //get message to decrypt from user
     cout<<"\nEnter message to decrypt: ";
     getline(cin, message);
@@ -55,17 +57,10 @@ int main() {
     cout<<"\nGetting the public key.....";
     cout<<"\nPublic Key published: ("<<primeNum<<", "<<alpha<<", "<<x<<")";
 
-    //checking size of message
-    if(m>primeNum-1){
-        cout<<"\nbigger than prime number";
-        return 0;
-    }
-
     while(messageBlock>0){
         //otherwise nextBlock will continue to add on previously decrypted letters
         nextBlock = 0;
-
-        //need to separate into blocks if m >primeNum-1
+        //need to separate into blocks because if m >primeNum-1
         if(m>primeNum-1)
             messageBlock++;
 
