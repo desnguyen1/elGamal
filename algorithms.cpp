@@ -10,7 +10,7 @@ using boost::multiprecision::uint1024_t;
 
 //string -> int
 //turns the letter into a number where A = 10, B = 11, a = 42, b = 43
-string stringToInt(string message) {
+string letterToInt(string message) {
     string output = "";
     int num;
     for (int i = 0; i < message.length(); i++) {
@@ -31,7 +31,9 @@ string stringToInt(string message) {
     return output;
 }
 
-string intToString(uint1024_t decryptedMessage){
+//turns the integer back to letter based off of conversion from above function
+//int -> letter
+string intToLetter(uint1024_t decryptedMessage){
     string output="";
     char letter;
     uint1024_t num;

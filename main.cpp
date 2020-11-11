@@ -42,7 +42,7 @@ int main() {
     getline(cin, message);
 
     //turning message into a number (A = 10, B = 11, a = 42)
-    message = stringToInt(message);
+    message = letterToInt(message);
 
 
     //get public key (p, alpha, x) and private key (a)
@@ -53,21 +53,22 @@ int main() {
     cout << "\nGetting the public key.....";
     cout << "\nPublic Key published: (" << primeNum << ", " << alpha << ", " << x << ")" << endl;
 
-    //turning string into int for computation
-    //TODO: Here is the error that the bottom todo is talking about
-    //need to split up message to fit in a 1024 bit variable
+    cout<<"\n===========================================================================================================";
+
+    //need to split up message to fit in a 1024 bit variable if it is a long message
     //1024 bits have 309 digits
     while(messageCount > 0) {
         messageBlock =1;
         if (message.length() >= 309) {
             message_substr = message.substr(0, 308);
-            cout<<"\nsize of message: "<<message.length();
+            //cout<<"\nsize of message: "<<message.length();
             message = message.erase(0, 308);
             messageCount++;
-            cout<<"\nmessage count: "<<messageCount;
+            //cout<<"\nmessage count: "<<messageCount;
         } else {
             message_substr = message;
         }
+        //turing string of numbers into an integer
         std::stringstream ss;
         ss << message_substr;
         ss >> m;
@@ -97,7 +98,7 @@ int main() {
 
             //starting decryption
             decryptedBlock = decryption(privateKey, primeNum, gamma, delta);
-            str_decryptedBlock = intToString(decryptedBlock);
+            str_decryptedBlock = intToLetter(decryptedBlock);
             decrypted_message += str_decryptedBlock;
 
             //cout << "\ndecrypted block: " << decryptedBlock;
@@ -108,8 +109,9 @@ int main() {
         }
         messageCount--;
     }
+    cout<<"\n===========================================================================================================";
     //convert back to letters
-    cout << "\ndecrypted message: " << decrypted_message;
+    cout << "\n\nDecrypted message: " << decrypted_message;
 
 
     return 0;
