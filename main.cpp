@@ -45,17 +45,18 @@ int main() {
     message = stringToInt(message);
 
     //turning string into int for computation
+    //TODO: Here is the error that the bottom todo is talking about
     std::stringstream ss;
     ss<<message;
     ss>>m;
 
     //get public key (p, alpha, x) and private key (a)
     generateKeys(primeNum, alpha, x, privateKey);
-    cout<<"\nGenerating public and private key based off of desired key size in bits.....";
+    cout<<"\nGenerating public and private key based off of desired key size in bits....."<<endl;
 
     //obtain A's public key
     cout<<"\nGetting the public key.....";
-    cout<<"\nPublic Key published: ("<<primeNum<<", "<<alpha<<", "<<x<<")";
+    cout<<"\nPublic Key published: ("<<primeNum<<", "<<alpha<<", "<<x<<")"<<endl;
 
     while(messageBlock>0){
         //otherwise nextBlock will continue to add on previously decrypted letters
@@ -69,20 +70,22 @@ int main() {
             leftover = m % 100;
             nextBlock = concatTwoNums(leftover, nextBlock);
             m/=100;
-            cout<<"\nm: "<<m;
-            cout<<"\nnextBlock: "<<nextBlock;
+            //cout<<"\nm: "<<m;
+            //cout<<"\nnextBlock: "<<nextBlock;
         }
 
         //starting encryption
         //will output ciphertext of c = (gamma, delta)
         encryption(m, primeNum, x, alpha, gamma, delta);
 
+        cout<<"\nCiphertext: ("<<gamma<<", "<<delta<<")";
+
         //starting decryption
         decryptedBlock = decryption(privateKey, primeNum, gamma, delta);
         str_decryptedBlock = intToString(decryptedBlock);
         decrypted_message += str_decryptedBlock;
 
-        cout << "\ndecrypted block: " << decryptedBlock;
+        //cout << "\ndecrypted block: " << decryptedBlock;
 
         m = nextBlock;
         messageBlock--;
@@ -94,4 +97,4 @@ int main() {
 
     return 0;
 }
-//TODO: print ciphertext
+//TODO: error when printing a long message because it can be greater than 1024 bits

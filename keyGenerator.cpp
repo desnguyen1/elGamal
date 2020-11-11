@@ -40,7 +40,7 @@ uint1024_t generatePrime(int key_size){
     }
 
 
-    cout<<"\nprime number is: "<<prime;
+    //cout<<"\nprime number is: "<<prime;
     return prime;
 }
 
