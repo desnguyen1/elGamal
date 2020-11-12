@@ -6,12 +6,13 @@ Z: 23397389
 Assignment - 03: ElGamal Asymmetric Encryption/Decryption 
 
 ## How to Run the Program
-Inside the terminal, make sure the file path is inside the project folder. Then
-run the following commands:
+This zip folder will already include an executable file named `elGamalHW`
 
-`g++ *.cpp -o output`
+Go inside the project folder, e.g., if the project folder is placed in Desktop: `cd Desktop/elGamalHW` then go into the `build` folder so file path would be similar to `Desktop/elGamalHW/build` 
 
-`./output`
+Then run the following command
+
+`./elGamalHW`
 
 ## File Contents
 main.cpp
